@@ -1,0 +1,14 @@
+{
+  "name": "electryhost",
+  "version": "0.0.1",
+  "description": "",
+  "main": "ElectryHost.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SmikkelBeertjes",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
