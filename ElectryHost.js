@@ -343,4 +343,4 @@ if(message.content == ".kill") {
     }
 });
 
-ElectryHost.login(config.token);
+ElectryHost.login(process.env.token);
