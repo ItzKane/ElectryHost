@@ -91,10 +91,19 @@ ElectryHost.on('guildMemberRemove', async member => {
    
         return;
     }  
+      
+    if(message.content === `.count`)
+        const InfoEmbed = new Discord.RichEmbed()
+        .setTitle('ElectryHost leden')
+        .addField('**🌎 Leden:**', '')
 
 	if(message.content === `.status`) {
 		ElectryHost.user.setStatus()
 	}
+      
+    if(message.content === `.invite`) {
+        message.channel.sned('**Wat leuk dat je onze bot leuk vind! Hopelijk ga je veel plezier ermee hebben, https://discordapp.com/oauth2/authorize?client_id=427857462947872779&scope=bot&permissions=8**')
+    }
 	
     if(message.content === `.prijs`) {
 
@@ -207,6 +216,17 @@ ElectryHost.on('guildMemberRemove', async member => {
         .setColor('0x4628d0')
         console.log('PRIJS: VPS')
         message.channel.send(PrijsMinecraftEmbed)
+    }
+      
+    if(message.content === `.promotie`) {
+        const args = args.join(' ')
+        message.delete(1)
+        const PromotieEmbed = new Discord.RichEmbed()
+        .setTitle('Promotie`)
+        .addField('**Lid:**', `${member.user.tag}`)
+        .addField('**Promoter:**', `ElectryHost#2382`)
+        .addField('**Server:**', `${args}`)
+        message.channel.send(PromotieEmbed)
     }
       
 
@@ -331,16 +351,6 @@ if(message.content == ".nieuws") {
     message.channel.send(nieuwsembed)
 }
       
-if(message.content == ".tester") {
-    let testembed = new Discord.RichEmbed()
-    .setTitle('Tested ElectryHosting')
-    .addField('Tested:', 'ElectryHost#2382')
-    .addField('Tester:', ':question:')
-    .addField('Extra:', 'The bot is now 24/7!')
-    .setColor(0xce0000)
-    message.channel.send(testembed)
-    }
-	  
 if(message.content == ".kill") {
     let killembed = new Discord.RichEmbed()
     .setTitle('Killed ElectryHosting')
