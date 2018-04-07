@@ -331,6 +331,16 @@ if(message.content == ".nieuws") {
     message.channel.send(nieuwsembed)
 }
       
+if(message.content == ".test") {
+    let testembed = new Discord.RichEmbed()
+    .setTitle('Tested ElectryHosting')
+    .addField('Tested:', 'ElectryHost#2382')
+    .addField('Tester:', ':question:')
+    .addField('Extra:', 'The bot is now 24/7!')
+    .setColor(0xce0000)
+    message.channel.send(testembed)
+    }
+	  
 if(message.content == ".kill") {
     let killembed = new Discord.RichEmbed()
     .setTitle('Killed ElectryHosting')
