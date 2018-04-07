@@ -92,17 +92,32 @@ ElectryHost.on('guildMemberRemove', async member => {
         return;
     }  
       
-    if(message.content === `.count`)
-        const InfoEmbed = new Discord.RichEmbed()
-        .setTitle('ElectryHost leden')
-        .addField('**🌎 Leden:**', '')
+if(message.content.startsWith(".count")){
+    let roleName = message.content.split(" ").slice(1).join(" ");
 
+    //Filtering the guild members only keeping those with the role
+    //Then mapping the filtered array to their usernames
+    let membersWithRole = message.guild.members.filter(member => { 
+        return member.roles.find("name", "🌎| Members");
+    }).map(member => {
+        return member.user.username;
+    })
+
+    let embed = new Discord.RichEmbed({
+        "title": `Users with the ${roleName} role`,
+        "description": membersWithRole.join("\n"),
+        "color": 0xFFFF
+    });
+
+    return message.channel.send({embed});
+}
+      
 	if(message.content === `.status`) {
 		ElectryHost.user.setStatus()
 	}
       
     if(message.content === `.invite`) {
-        message.channel.sned('**Wat leuk dat je onze bot leuk vind! Hopelijk ga je veel plezier ermee hebben, https://discordapp.com/oauth2/authorize?client_id=427857462947872779&scope=bot&permissions=8**')
+        message.channel.send('**Wat leuk dat je onze bot leuk vind! Hopelijk ga je veel plezier ermee hebben, https://discordapp.com/oauth2/authorize?client_id=427857462947872779&scope=bot&permissions=8**')
     }
 	
     if(message.content === `.prijs`) {
@@ -218,18 +233,6 @@ ElectryHost.on('guildMemberRemove', async member => {
         message.channel.send(PrijsMinecraftEmbed)
     }
       
-    if(message.content === `.promotie`) {
-        const args = args.join(' ')
-        message.delete(1)
-        const PromotieEmbed = new Discord.RichEmbed()
-        .setTitle('Promotie`)
-        .addField('**Lid:**', `${member.user.tag}`)
-        .addField('**Promoter:**', `ElectryHost#2382`)
-        .addField('**Server:**', `${args}`)
-        message.channel.send(PromotieEmbed)
-    }
-      
-
     if(message.content === `.ban`) {
  
         let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -284,6 +287,20 @@ if(message.content === `.battery`) {
 if(message.content === `.reload`) {
     loadCmds();
     }
+      
+if(message.content.startsWith(".promotie")){
+    message.delete(1);
+    const member = message.member;
+    const PromotieEmbed = new Discord.RichEmbed()
+    .setTitle(`Promotie`)
+    .addField('Gebruiker:', `<@${message.author.id}>`)
+    .addField('Doorgever:', `GalaxyHost#2382`)
+    .addField('Server:', 'https://discord.gg/sGEQq5E')
+    .setThumbnail(message.author.displayAvatarURL)
+    .setColor('0x4628d0')
+    console.log('PROMO: ELECTRYHOST!')
+    message.channel.send(PromotieEmbed)
+}
 
 if(message.content == ".help") {
     let embed = new Discord.RichEmbed()
@@ -363,4 +380,4 @@ if(message.content == ".kill") {
     }
 });
 
-ElectryHost.login(process.env.token);
+ElectryHost.login(config.token);
