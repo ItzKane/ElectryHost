@@ -331,7 +331,7 @@ if(message.content == ".nieuws") {
     message.channel.send(nieuwsembed)
 }
       
-if(message.content == ".test") {
+if(message.content == ".tester") {
     let testembed = new Discord.RichEmbed()
     .setTitle('Tested ElectryHosting')
     .addField('Tested:', 'ElectryHost#2382')
