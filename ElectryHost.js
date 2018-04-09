@@ -295,22 +295,6 @@ if(message.content === `.reload`) {
     loadCmds();
     }
 
-if(message.content.startsWith(".promo")){
-    message.delete(1);
-    const member = message.member;
-    const PromoEmbed = new Discord.RichEmbed()
-    .setTitle(`Promotie`)
-    .addField('Gebruiker:', `<@${message.author.id}>`)
-    .addField('Doorgever:', `<@427857462947872779>`)
-    .addField('Server:', links[Math.floor(Math.random() * links.length)])
-    .setThumbnail(message.author.displayAvatarURL)
-    .setFooter('Also promotion? Buy it on https://www.paypal.me/SmikkelHost')
-    .setTimestamp()
-    .setColor('0x4628d0')
-    console.log('PROMO: ELECTRYHOST!')
-    message.channel.send(PromoEmbed)
-}
-
 if(message.content.startsWith(".promotie")){
     message.delete(1);
     const member = message.member;
