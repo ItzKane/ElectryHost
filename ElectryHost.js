@@ -23,7 +23,7 @@ ElectryHost.on(`ready`, () => {
   ElectryHost.on(`guildMemberAdd`, (member) => {
     console.log(`New User "${member.user.username}" has joined "${member.guild.name}"`);
   });
- 
+
   ElectryHost.on('guildMemberAdd', async member => {
     let guild = member.guild;
     let userclient = member.user.bot ? 'Bot' : 'User'
@@ -31,10 +31,10 @@ ElectryHost.on(`ready`, () => {
     if (!channel) {
         guild.createChannel('new-general', 'text').then(channel => console.log(`Created new channel ${channel}`)).catch(console.error);
     }
-    let role = member.guild.roles.find('name', '🌎| Members');
+    let role = member.guild.roles.find('name', 'ðŸŒŽ| Members');
     if (!role) {
         guild.createRole({
-            name: '🌎| Members',
+            name: 'ðŸŒŽ| Members',
             color: 'GRAY_DARK'
         }).then(role => console.log(`Created role ${role}`)).catch(console.error);
     }
@@ -67,14 +67,14 @@ ElectryHost.on('guildMemberRemove', async member => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     if(message.content === `.kick`) {
-   
+
         let kUser = message.mentions.members.first() || message.guild.members.get(args[0]);
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You do not have enough perms for this command");
         if(!kUser) return message.channel.send("Can't find user!");
         let kReason = args.slice(1).join(" ");
         if (!kReason) return message.channel.send("You need to specify why you want to kick this user");
         if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
-   
+
         let kickEmbed = new Discord.RichEmbed()
         .setDescription("Kick info:")
         .setColor([255, 0, 0])
@@ -82,23 +82,23 @@ ElectryHost.on('guildMemberRemove', async member => {
         .addField("Moderator", `**<@${message.author.id}>**`)
         .addField("Where it happend", message.channel)
         .addField("Reason:", kReason);
-   
+
         let kickChannel = message.guild.channels.find(`name`, "mod-log");
         if(!kickChannel) return message.channel.reply("Can't find mod-log channel.");
-   
+
         message.guild.member(kUser).kick(kReason);
         kickChannel.send(kickEmbed);
-   
+
         return;
-    }  
-      
+    }
+
 if(message.content.startsWith(".count")){
     let roleName = message.content.split(" ").slice(1).join(" ");
 
     //Filtering the guild members only keeping those with the role
     //Then mapping the filtered array to their usernames
-    let membersWithRole = message.guild.members.filter(member => { 
-        return member.roles.find("name", "🌎| Members");
+    let membersWithRole = message.guild.members.filter(member => {
+        return member.roles.find("name", "ðŸŒŽ| Members");
     }).map(member => {
         return member.user.username;
     })
@@ -111,15 +111,15 @@ if(message.content.startsWith(".count")){
 
     return message.channel.send({embed});
 }
-      
+
 	if(message.content === `.status`) {
 		ElectryHost.user.setStatus()
 	}
-      
+
     if(message.content === `.invite`) {
         message.channel.send('**Wat leuk dat je onze bot leuk vind! Hopelijk ga je veel plezier ermee hebben, https://discordapp.com/oauth2/authorize?client_id=427857462947872779&scope=bot&permissions=8**')
     }
-	
+
     if(message.content === `.prijs`) {
 
         const Prijs1Embed = new Discord.RichEmbed()
@@ -130,7 +130,7 @@ if(message.content.startsWith(".count")){
         console.log('PRIJS: KORTINGEN EN GRATIS TOEVOEGINGEN')
         message.channel.send(Prijs1Embed)
     }
-      
+
     if(message.content === `.prijs`) {
 
         const Prijs2Embed = new Discord.RichEmbed()
@@ -140,7 +140,7 @@ if(message.content.startsWith(".count")){
         console.log('PRIJS: TOEVOEGINGEN')
         message.channel.send(Prijs2Embed)
     }
-      
+
     if(message.content === `.prijs`) {
 
         const Prijs3Embed = new Discord.RichEmbed()
@@ -153,7 +153,7 @@ if(message.content.startsWith(".count")){
         console.log('PRIJS: INSTALLATIE SUPPORT')
         message.channel.send(Prijs3Embed)
     }
-      
+
     if(message.content === `.prijs`) {
 
         const Prijs4Embed = new Discord.RichEmbed()
@@ -164,11 +164,11 @@ if(message.content.startsWith(".count")){
         console.log('PRIJS: OVERSTAP SUPPORT')
         message.channel.send(Prijs4Embed)
     }
-      
+
     if(message.content === `.prijs1`) {
 
         const PrijsVPSEmbed = new Discord.RichEmbed()
-        .setTitle(`☁ Cloud VPS`)
+        .setTitle(`â˜ Cloud VPS`)
         .setDescription('Wij kunnen nog geen Cloud VPSen voor u kunnen hosten en verkopen!')
         .setColor('0x4628d0')
         console.log('PRIJS: VPS')
@@ -214,7 +214,7 @@ if(message.content.startsWith(".count")){
         console.log('PRIJS: DISCORD')
         message.channel.send(PrijsDomeinEmbed)
     }
-      
+
     if(message.content === `.prijs1`) {
 
         const PrijsVPSEmbed = new Discord.RichEmbed()
@@ -232,9 +232,9 @@ if(message.content.startsWith(".count")){
         console.log('PRIJS: VPS')
         message.channel.send(PrijsMinecraftEmbed)
     }
-      
+
     if(message.content === `.ban`) {
- 
+
         let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You do not have enough perms for this command");
         if(!bUser) return message.channel.send("Can't find user!");
@@ -259,7 +259,7 @@ if(message.content.startsWith(".count")){
 
         return;
     }
- 
+
  var fortunes = [
     "I have no battery more! :sadfile:",
     "My battery is now 100%",
@@ -275,7 +275,14 @@ if(message.content.startsWith(".count")){
     "My battery is now 90%",
     "My battery is now 67%"
 ];
- 
+
+ var links = [
+    "https://discord.gg/sGEQq5E (ElectryHost)",
+    "https://discord.gg/VHYFuUD (Discord Bot Development)",
+    "https://discord.gg/4GCPzen (Electry Development)",
+		"https://discord.gg/9TgNWAD (BuildersUnited)"
+];
+
 if(message.content === `.battery`) {
     if (args[0]) message.channel.send({embed: {
         color: 12629277,
@@ -287,16 +294,34 @@ if(message.content === `.battery`) {
 if(message.content === `.reload`) {
     loadCmds();
     }
-      
+
+		if(message.content.startsWith(".promo")){
+		    message.delete(1);
+		    const member = message.member;
+		    const PromoEmbed = new Discord.RichEmbed()
+		    .setTitle(`Promotie`)
+		    .addField('Gebruiker:', `<@${message.author.id}>`)
+		    .addField('Doorgever:', `<@427857462947872779>`)
+		    .addField('Server:', links[Math.floor(Math.random() * links.length)])
+		    .setThumbnail(message.author.displayAvatarURL)
+		    .setFooter('Also promotion? Buy it on https://www.paypal.me/SmikkelHost')
+		    .setTimestamp()
+		    .setColor('0x4628d0')
+		    console.log('PROMO: ELECTRYHOST!')
+		    message.channel.send(PromoEmbed)
+		}
+
 if(message.content.startsWith(".promotie")){
     message.delete(1);
     const member = message.member;
     const PromotieEmbed = new Discord.RichEmbed()
     .setTitle(`Promotie`)
     .addField('Gebruiker:', `<@${message.author.id}>`)
-    .addField('Doorgever:', `GalaxyHost#2382`)
-    .addField('Server:', 'https://discord.gg/sGEQq5E')
+    .addField('Doorgever:', `<@427857462947872779>`)
+    .addField('Server:', links[Math.floor(Math.random() * links.length)])
     .setThumbnail(message.author.displayAvatarURL)
+    .setFooter('Also promotion? Buy it on https://www.paypal.me/SmikkelHost')
+    .setTimestamp()
     .setColor('0x4628d0')
     console.log('PROMO: ELECTRYHOST!')
     message.channel.send(PromotieEmbed)
@@ -326,7 +351,15 @@ if (message.content == ".about") {
     .setColor([192, 181, 29])
      message.channel.send(embed)
     }
-	
+
+if(message.channel.id === '409704264097726464') {
+		message.react("ðŸ¤”");
+		}
+
+		if(message.channel.id === '428193803845894154') {
+		    message.react("ðŸ‘");
+		  }
+
 if(message.content === "!purge") {
 	let messagecount = parseInt(numberofmessages);
 	message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
@@ -347,7 +380,7 @@ if(message.content.startsWith("||say ")) {
     message.delete(1000); //Supposed to delete message
     message.channel.send(message.content.slice(5, message.content.length));
    }
-      
+
 if(message.content == ".nieuws1") {
     message.delete(1);
     const nieuwsembed = new Discord.RichEmbed()
@@ -357,7 +390,7 @@ if(message.content == ".nieuws1") {
     .setTimestamp()
     message.channel.send(nieuwsembed)
 }
-      
+
 if(message.content == ".nieuws") {
     message.delete(1);
     const nieuwsembed = new Discord.RichEmbed()
@@ -367,7 +400,7 @@ if(message.content == ".nieuws") {
     .setTimestamp()
     message.channel.send(nieuwsembed)
 }
-      
+
 if(message.content == ".kill") {
     let killembed = new Discord.RichEmbed()
     .setTitle('Killed ElectryHosting')
@@ -380,4 +413,4 @@ if(message.content == ".kill") {
     }
 });
 
-ElectryHost.login(process.env.token);
+ElectryHost.login(config.token);
