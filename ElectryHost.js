@@ -31,11 +31,11 @@ ElectryHost.on(`ready`, () => {
     if (!channel) {
         guild.createChannel('new-general', 'text').then(channel => console.log(`Created new channel ${channel}`)).catch(console.error);
     }
-    let role = member.guild.roles.find('name', 'ðŸŒŽ| Members');
+    let role = member.guild.roles.find('name', 'Members');
     if (!role) {
         guild.createRole({
-            name: 'ðŸŒŽ| Members',
-            color: 'GRAY_DARK'
+            name: 'Members',
+            color: 'GREEN'
         }).then(role => console.log(`Created role ${role}`)).catch(console.error);
     }
     const welcomeEmbed = new Discord.RichEmbed()
