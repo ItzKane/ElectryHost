@@ -233,6 +233,21 @@ if(message.content.startsWith(".count")){
         message.channel.send(PrijsMinecraftEmbed)
     }
 
+    if(message.content === `.prijz`) {
+	message.delete(1);
+        const Prijz1Embed = new Discord.RichEmbed()
+        .setTitle(`Geïnteresseerd, vragen of bestellen? Gebruik **``!new <onderwerp>``**`)
+	.setTitle(`Alle prijzen zijn ook te vinden op http://electryhost.org/prijzen/  (In aanbouw)`)
+	.setDescription(`:rocket: | Minecraft Premium (SSD) (PER MAAND)`)
+        .addField('1GB »', ' €2,30 P/M`)
+        .addField('2GB »', ' €4,60 P/M`)
+        .addField('3GB »', '€7 P/M')
+        .addField('4GB »', '€9 P/M')
+	.addField('5GB »', '€11 P/M')
+        .setColor('0x4628d0')
+        message.channel.send(Prijz1Embed)
+    }
+	  
     if(message.content === `.ban`) {
 
         let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
