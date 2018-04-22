@@ -26,7 +26,7 @@ ElectryHost.on(`ready`, () => {
 
   ElectryHost.on('guildMemberAdd', async member => {
     let guild = member.guild;
-    let userclient = member.user.bot ? 'Bot' : 'User'
+    let userclient = member.user.bot ? 'Robot' : 'Gebruiker'
     let channel = guild.channels.find('name', 'member-log');
     if (!channel) {
         guild.createChannel('new-general', 'text').then(channel => console.log(`Created new channel ${channel}`)).catch(console.error);
@@ -34,22 +34,22 @@ ElectryHost.on(`ready`, () => {
     let role = member.guild.roles.find('name', 'Members');
     if (!role) {
         guild.createRole({
-            name: 'Members',
-            color: 'GREEN'
+            name: 'Gebruiker',
+            color: 'STANDARD'
         }).then(role => console.log(`Created role ${role}`)).catch(console.error);
     }
     const welcomeEmbed = new Discord.RichEmbed()
     .setAuthor(`${member.user.tag} is gejoind!`, member.user.displayAvatarURL)
     .setColor(65280)
     .setTimestamp()
-    .setFooter(`New ${userclient}`)
+    .setFooter(`Nieuwe ${userclient}`)
     channel.send(welcomeEmbed);
     await member.addRole(role);
 });
 
 ElectryHost.on('guildMemberRemove', async member => {
     let guild = member.guild;
-    let userclient = member.user.bot ? 'Bot' : 'User';
+    let userclient = member.user.bot ? 'Robot' : 'Gebruiker';
     let channel = guild.channels.find('name', 'member-log');
     if (!channel) {
         guild.createChannel('new-general', 'text').then(channel => console.log(`Created new channel ${channel}`)).catch(console.error);
@@ -58,7 +58,7 @@ ElectryHost.on('guildMemberRemove', async member => {
     .setAuthor(`${member.user.tag} is geleaved!`, member.user.displayAvatarURL)
     .setColor(13632027)
     .setTimestamp()
-    .setFooter(`${userclient} left`)
+    .setFooter(`${userclient} is weggegaan`)
     channel.send(byeEmbed);
 });
 
